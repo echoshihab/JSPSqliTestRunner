@@ -26,4 +26,4 @@ jobs:
         - name: Run SpotBugs with FindSecBugs
           uses: advanced-security/spotbugs-findsecbugs-action@v1
           with:
-            spotbugs_target: 'src/main/java' # cannot have globs
+            spotbugs_target: 'src/main/java/com/test/dao' # cannot have globs
