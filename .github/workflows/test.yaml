@@ -23,5 +23,5 @@ jobs:
         
         # run SpotBugs
             - name: Run SpotBugs
-            - mvn spotbugs:check
+            - run: mvn spotbugs:check
         
