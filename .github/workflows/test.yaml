@@ -1,4 +1,4 @@
-name: SpotBugs with FindSecBugs
+name: SpotBugs 
 
 on:
   push:
@@ -7,23 +7,21 @@ on:
 jobs:
     spotbugs:
       runs-on: ubuntu-latest
-      permissions:
-        actions: read
-        contents: read
-        security-events: write
-        
+
       steps:
         - name: Checkout
           uses: actions/checkout@v3
-        # this needs to be appropriately configured for your project
+        # set up java
         - name: Setup Java
           uses: actions/setup-java@v3
           with:
-            distribution: 'microsoft'
-            java-version: 11
+            java-version: '1.8'
 
-        # now run SpotBugs and upload the results to Code Scanning
-        - name: Run SpotBugs with FindSecBugs
-          uses: advanced-security/spotbugs-findsecbugs-action@v1
-          with:
-            spotbugs_target: 'src/main/java/com/test/dao' # cannot have globs
+        # build project with maven
+            - name: Build with maven
+            - run: mvn clean package
+        
+        # run SpotBugs
+            - name: Run SpotBugs
+            - mvn spotbugs:check
+        
