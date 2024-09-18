@@ -18,10 +18,10 @@ jobs:
             java-version: '1.8'
 
         # build project with maven
-            - name: Build with maven
-            - run: mvn clean package
+        - name: Build with maven
+        - run: mvn clean package
         
         # run SpotBugs
-            - name: Run SpotBugs
-            - run: mvn spotbugs:check
+        - name: Run SpotBugs
+        - run: mvn spotbugs:check
         
