@@ -19,7 +19,7 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
-          java-version: '11' # Specify your Java version
+          java-version: '11' # Specify the Java version needed
 
       - name: Cache Maven packages
         uses: actions/cache@v3
@@ -33,17 +33,11 @@ jobs:
         run: mvn install -DskipTests
 
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/snyk-action@v1
-        with:
-          args: monitor
-          distribution: maven
+        run: snyk monitor
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       - name: Run Snyk to test for vulnerabilities
-        uses: snyk/snyk-action@v1
-        with:
-          args: test
-          distribution: maven
+        run: snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
