@@ -40,8 +40,7 @@
       <plugin>
         <groupId>io.snyk</groupId>
         <artifactId>snyk-maven-plugin</artifactId>
-        <version>3.1</version>
-        <inherited>false</inherited>
+        <version>2.3.0</version>
         <executions>
           <execution>
             <id>snyk-test</id>
@@ -49,19 +48,7 @@
               <goal>code-test</goal>
             </goals>
           </execution>
-          <execution>
-            <id>snyk-monitor</id>
-            <goals>
-              <goal>monitor</goal>
-            </goals>
-          </execution>
         </executions>
-        <configuration>
-          <apiToken>${env.SNYK_TOKEN}</apiToken>
-          <args>
-            <arg>--all-projects</arg>
-          </args>
-        </configuration>
       </plugin>
     </plugins>
 
