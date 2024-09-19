@@ -1,28 +1,37 @@
-name: SpotBugs 
-
+name: Snyk Security Scan for Java
 on:
   push:
-    branches: [ main ]
-
+    branches:
+main
+  pull_request:
+    branches:
+main
 jobs:
-    spotbugs:
-      runs-on: ubuntu-latest
+  snyk:
+    runs-on: ubuntu-latest
+    steps:
+name: Checkout code
+        uses: actions/checkout@v3
 
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v3
-        # set up java
-        - name: Setup Java
-          uses: actions/setup-java@v3
-          with:
-            java-version: '8'
-            distribution: 'temurin'
+name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: '11'
 
-        # build project with maven
-        - name: Build with maven
-          run: mvn clean package
-        
-        # run SpotBugs
-        - name: Run SpotBugs
-          run: mvn spotbugs:check
-        
+name: Build with Maven
+        run: mvn -B package --file pom.xml
+
+name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/maven@v3
+        with:
+          args: test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+name: Monitor the project with Snyk
+        uses: snyk/actions/maven@v3
+        with:
+          args: monitor
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
