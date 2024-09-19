@@ -11,11 +11,11 @@ public class TestDao {
 
         Connection conn = DBUtil.getConnection();
 
-        String injectableSql = "INSERT INTO TestTable (name) VALUES ('" + name + "')";
+        String issueSql = "INSERT INTO TestTable (name) VALUES ('" + name + "')";
 
         try {
             Statement stmt = conn.createStatement();
-            stmt.executeUpdate(injectableSql);
+            stmt.executeUpdate(issueSql);
             stmt.close();
             conn.close();
         } catch (Exception ex) {
