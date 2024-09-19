@@ -21,7 +21,7 @@ jobs:
         with:
             java-version: '11'
             distribution: 'temurin'
-
+      
       - name: Install Snyk CLI
         run: npm install -g snyk
 
