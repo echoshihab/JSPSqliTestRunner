@@ -19,7 +19,8 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
-          java-version: '11' # Specify the Java version needed
+          java-version: '11'
+          distribution: 'temurin'
 
       - name: Cache Maven packages
         uses: actions/cache@v3
@@ -30,7 +31,7 @@ jobs:
             ${{ runner.os }}-m2-
 
       - name: Build with Maven
-        run: mvn install -DskipTests
+        run: mvn clean package
 
       - name: Install Snyk CLI
         run: npm install -g snyk
