@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.example</groupId>
   <artifactId>TestRunnerSqli</artifactId>
@@ -38,31 +38,29 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version> <!-- Ensure using a compatible version -->
-        <configuration>
-          <source>1.8</source> <!-- Java source version -->
-          <target>1.8</target> <!-- Java target version -->
-        </configuration>
-      </plugin>
-
-      <!-- Snyk Maven Plugin for security scanning -->
-      <plugin>
-        <groupId>io.snyk</groupId>
-        <artifactId>snyk-maven-plugin</artifactId>
-        <version>2.2.0</version> <!-- Replace with the latest version -->
-        <executions>
-          <execution>
-            <id>snyk-test</id>
-            <goals>
-              <goal>test</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <severity>high</severity> <!-- Optional: specify severity threshold -->
-        </configuration>
+        <!-- https://spotbugs.readthedocs.io/en/latest/maven.html#add-spotbugs-maven-plugin-to-your-pom-xml -->
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>3.1.2</version>
+        <!--        <configuration>-->
+        <!--          <includeFilterFile>spotbugs-security-include.xml</includeFilterFile>-->
+        <!--          <excludeFilterFile>spotbugs-security-exclude.xml</excludeFilterFile>-->
+        <!--          <plugins>-->
+        <!--            <plugin>-->
+        <!--              <groupId>com.h3xstream.findsecbugs</groupId>-->
+        <!--              <artifactId>findsecbugs-plugin</artifactId>-->
+        <!--              <version>1.12.0</version>-->
+        <!--            </plugin>-->
+        <!--          </plugins>-->
+        <!--        </configuration>-->
+        <dependencies>
+          <!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
+          <dependency>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs</artifactId>
+            <version>3.1.2</version>
+          </dependency>
+        </dependencies>
       </plugin>
     </plugins>
 
