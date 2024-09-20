@@ -28,10 +28,10 @@ jobs:
       - name: Build with maven
         run: mvn clean package
 
-      - name: Run Snyk Test
+      - name: Run Snyk Test for open source vulnerabilities
         run: mvn snyk:test
 
-      - name: Run Snyk to test for vulnerabilities
+      - name: Run Snyk Code Test for SQL Injection
         run: snyk code test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
