@@ -1,28 +1,31 @@
-name: "Snyk Code Scan"
+name: Snyk Security Scan
 
 on:
   push:
     branches:
-      - master
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  Pipeline-Job:
-    name: 'Snyk Code Scan'
+  snyk:
     runs-on: ubuntu-latest
-    env:
-      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v1
+      - name: Check out the repository
+        uses: actions/checkout@v3
 
-      # Install and Authenticate to Snyk
-      - name: Install Snyk & Authenticate
-        run: |
-          sudo npm install -g snyk
-          snyk auth ${SNYK_TOKEN}
-      # Run Snyk Code
-      - name: Run Snyk Code
-        run: |
-          snyk code test --sarif  > results.sarif
-        continue-on-error: true
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+            java-version: '11'
+            distribution: 'temurin'
+      
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+
+      - name: Run Snyk to test for vulnerabilities
+        run: snyk code test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
