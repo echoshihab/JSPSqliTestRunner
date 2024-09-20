@@ -60,7 +60,7 @@
           </execution>
         </executions>
         <configuration>
-          <apiToken>0f04efd8-c091-4d9e-a90a-6e1fd0d720d5</apiToken>
+          <apiToken>${env.SNYK_TOKEN}</apiToken>
           <args>
             <arg>--all-projects</arg>
           </args>
