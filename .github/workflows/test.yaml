@@ -7,7 +7,6 @@ on:
 
 jobs:
   Pipeline-Job:
-    # Configure Environment
     name: 'Snyk Code Scan'
     runs-on: ubuntu-latest
     env:
