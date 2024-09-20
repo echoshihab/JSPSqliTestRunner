@@ -25,13 +25,13 @@ jobs:
       - name: Install Snyk CLI
         run: npm install -g snyk
 
-      - name: Run Snyk to test for vulnerabilities
-        run: snyk code test
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
       - name: Build with maven
         run: mvn clean package
 
       - name: Run Snyk Test
         run: mvn snyk:test
+
+      - name: Run Snyk to test for vulnerabilities
+        run: snyk code test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
