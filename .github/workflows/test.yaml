@@ -25,6 +25,11 @@ jobs:
       - name: Install Snyk CLI
         run: npm install -g snyk
 
+      - name: Authorize Local Machine
+        run: snyk auth
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
       - name: Build with maven
         run: mvn clean package
 
