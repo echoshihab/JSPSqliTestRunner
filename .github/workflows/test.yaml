@@ -25,6 +25,9 @@ jobs:
       - name: Install Snyk CLI
         run: npm install -g snyk
 
+      - name: Set environment variable for Snyk
+        run: echo "SNYK_TOKEN=${{ secrets.SNYK_TOKEN }}" >> $GITHUB_ENV
+
       - name: Build with maven
         run: mvn clean package
 
