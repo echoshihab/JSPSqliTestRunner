@@ -19,6 +19,6 @@ public class TestController extends HttpServlet {
         TestDao testDao = new TestDao();
         testDao.insertName(name);
 
-        resp.getWriter().write("Name submitted " + name);
+        resp.getWriter().write("Name submitted:  " + name);
     }
 }
