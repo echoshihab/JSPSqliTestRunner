@@ -38,29 +38,12 @@
         </configuration>
       </plugin>
       <plugin>
-        <!-- https://spotbugs.readthedocs.io/en/latest/maven.html#add-spotbugs-maven-plugin-to-your-pom-xml -->
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>3.1.2</version>
+        <version>4.8.6.4</version>
         <configuration>
           <includeFilterFile>spotbugs-security-include.xml</includeFilterFile>
-<!--          <excludeFilterFile>spotbugs-security-include.xml</excludeFilterFile>-->
-          <plugins>
-            <plugin>
-              <groupId>com.h3xstream.findsecbugs</groupId>
-              <artifactId>findsecbugs-plugin</artifactId>
-              <version>1.12.0</version>
-            </plugin>
-          </plugins>
         </configuration>
-        <dependencies>
-          <!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
-          <dependency>
-            <groupId>com.github.spotbugs</groupId>
-            <artifactId>spotbugs</artifactId>
-            <version>3.1.2</version>
-          </dependency>
-        </dependencies>
       </plugin>
     </plugins>
 

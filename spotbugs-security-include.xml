@@ -1,8 +1,8 @@
 <FindBugsFilter>
     <Match>
-        <Bug pattern="SQL_INJECTION_JDBC"/>
+        <Bug pattern="SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE"/>
     </Match>
     <Match>
-        <Bug pattern="SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE"/>
+        <Bug pattern="SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING"/>
     </Match>
 </FindBugsFilter>
