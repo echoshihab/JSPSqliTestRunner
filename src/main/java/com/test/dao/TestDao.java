@@ -3,6 +3,7 @@ package com.test.dao;
 import com.test.util.DBUtil;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.Statement;
 
 public class TestDao {
@@ -11,11 +12,12 @@ public class TestDao {
 
         Connection conn = DBUtil.getConnection();
 
-        String injectableSql = "INSERT INTO TestTable (name) VALUES ('" + name + "')";
+        String updatedSql = "INSERT INTO TestTable (name) VALUES (?)";
 
         try {
-            Statement stmt = conn.createStatement();
-            stmt.executeUpdate(injectableSql);
+            PreparedStatement stmt = conn.prepareStatement(updatedSql);
+            stmt.setString(1, name);
+            stmt.executeUpdate();
             stmt.close();
             conn.close();
         } catch (Exception ex) {
